@@ -19,6 +19,9 @@
 
 case node['mariadb']['install']['type']
 when 'package'
+  # force usage of MariaDB repository until native is available
+  node.set['mariadb']['use_default_repository'] = true
+  
   # include MariaDB repositories
   include_recipe "#{cookbook_name}::repository"
 
